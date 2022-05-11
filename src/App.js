@@ -4,16 +4,13 @@ export default function App() {
   const [tasks, setTasks] = useState([]);
 
   function addToList(e) {
-    console.log("testing");
-    console.log(tasks);
-    // console.log(e);
-    setTasks(tasks.push(document.getElementById("task")));
-    console.log(tasks.map((element) => "element"));
+    // console.log(tasks);
+    setTasks(() => [...tasks, document.getElementById("task").value]);
   }
 
-  function print() {
-    console.log(tasks);
-  }
+  // function print() {
+  //   console.log(tasks);
+  // }
 
   return (
     <div>
@@ -23,7 +20,9 @@ export default function App() {
         <input type="text" name="task" id="task" />
         <button onClick={addToList}>Add</button>
       </div>
-      {print()}
+      {tasks.map((element, index) => (
+        <li key={index}>{element}</li>
+      ))}
     </div>
   );
 }
